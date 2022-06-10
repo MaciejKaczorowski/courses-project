@@ -3,6 +3,7 @@ package pl.sda.coursesproject.domain.lesson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.sda.coursesproject.domain.block.Block;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Lesson {
     private String topic;
 
     @Column (nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private LocalDateTime dateTime;
 
     @ManyToOne

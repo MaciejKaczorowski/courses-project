@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <link href="/webjars/bootstrap/5.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <script src="webjars/bootstrap/5.1.0/css/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>login</th>
+            <th>role</th>
+            <th>name</th>
+            <th>surname</th>
+            <th>active?</th>
+            <th>courses</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.role?.name}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.active}"></td>
+            <td th:text="${user.courses}"></td>
+            <td> </td>
+
+            <td>
+                <a class="btn btn-danger" th:href="@{'/users/delete/' + ${user.id}}">Delete</a>
+                <a class="btn btn-primary" th:href="@{'/users/' + ${user.id}}">Edit</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="container text-center">
+    <a class="btn btn-success" th:href="@{'/users/register'}"> Add a new user </a>
+</div>
+
+</body>
+</html>

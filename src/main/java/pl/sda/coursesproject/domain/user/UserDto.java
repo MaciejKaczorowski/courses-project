@@ -14,7 +14,7 @@ public class UserDto {
     private String login;
     private String name;
     private String surname;
-    private boolean isActive;
+    private boolean active;
 
     private List<Course> courses;
 

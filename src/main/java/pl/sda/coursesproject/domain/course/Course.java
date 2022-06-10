@@ -5,16 +5,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import pl.sda.coursesproject.domain.block.Block;
+import pl.sda.coursesproject.domain.user.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Course {
 
     @Id
@@ -24,11 +27,24 @@ public class Course {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "course")
-    private List<Block> blocks;
+    @ManyToMany
+    @JoinTable(name = "courses_blocks",
+            joinColumns = {@JoinColumn(name = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "block_id")})
+    private List<Block> blocks = new ArrayList<>();
 
-    public Course(Long id, String name) {
-        this.id = id;
+    @ManyToMany(mappedBy = "courses")
+    private Set<User> user = new HashSet<>();
+
+    public Course(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

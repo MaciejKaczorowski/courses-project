@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Register User</title>
+  <link href="/webjars/bootstrap/5.1.0/css/bootstrap.min.css"
+        rel="stylesheet">
+  <script src="/webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+  <div class="container">
+    <form th:object="${course}" method="post" th:action="@{'/courses/confirm_addition'}">
+      <div class="mb-3">
+        <label for="name" class="form-label"> Name </label>
+        <input th:field="*{name}" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+
+</html>

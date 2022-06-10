@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit course</title>
+    <link href="/webjars/bootstrap/5.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <script src="/webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <form th:object="${course}" method="post" th:action="@{'/courses/' + ${id}}">
+        <div class="mb-3">
+            <label for="name" class="form-label"> Name </label>
+            <input th:field="*{name}" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+        </div>
+        <div>
+            <select th:field="*{blocks}" class="form-select form-select-sm" multiple>
+                <option value=""> Select a block. </option>
+                <option th:each="_block:${block}"
+                        th:value="${_block.id}"
+                        th:text="${_block.name}"
+                ></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

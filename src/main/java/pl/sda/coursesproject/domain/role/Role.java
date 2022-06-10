@@ -1,6 +1,7 @@
 package pl.sda.coursesproject.domain.role;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,15 +20,13 @@ public class Role {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(value = EnumType.STRING)
     private RoleEnum name;
 
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
 
     @Override
     public String toString() {
